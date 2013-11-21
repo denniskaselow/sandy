@@ -13,19 +13,22 @@ class Game extends GameBase {
 
 
   void createEntities() {
-    for (int j = 0; j < 200; j++) {
-      for (int i = 0; i < 300+j; i++) {
-        addEntity([new Pixel('brown'), new Position(i, 200 + j ~/ 2)]);
+    for (int j = 0; j < 100; j+=1) {
+      for (int i = 0; i < 300+j*2; i+=1) {
+        addEntity([new Pixel('brown'), new Position(i, 200 + j)]);
       }
-      for (int i = 300+j; i < 500; i++) {
-        addEntity([new Pixel('blue'), new Position(i, 200 + j ~/ 2)]);
+      for (int i = 300+j*2; i < 500; i+=1) {
+        addEntity([new Pixel('blue'), new Position(i, 200 + j)]);
       }
     }
   }
 
   List getSystems() {
+    var ctx = canvas.context2D;
     return [
-      new PixelRenderingSystem(canvas.context2D)
+      new CanvasCleaningSystem(canvas),
+      new PixelRenderingSystem(ctx),
+      new FpsRenderingSystem(ctx)
     ];
   }
 

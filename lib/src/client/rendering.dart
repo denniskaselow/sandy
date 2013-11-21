@@ -18,4 +18,5 @@ class PixelRenderingSystem extends EntityProcessingSystem {
     ctx.fillStyle = pixel.color;
     ctx.fillRect(pos.point.x, pos.point.y, 1, 1);
   }
+
 }

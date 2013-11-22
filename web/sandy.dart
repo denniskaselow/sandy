@@ -15,10 +15,10 @@ class Game extends GameBase {
   void createEntities() {
     for (int j = 0; j < 100; j+=1) {
       for (int i = 0; i < 300+j*2; i+=1) {
-        addEntity([new Pixel('brown'), new Position(i, 200 + j)]);
+        addEntity([new Sand(), new Position(i, 200 + j)]);
       }
       for (int i = 300+j*2; i < 500; i+=1) {
-        addEntity([new Pixel('blue'), new Position(i, 200 + j)]);
+        addEntity([new Water(), new Position(i, 200 + j)]);
       }
     }
   }
@@ -27,7 +27,8 @@ class Game extends GameBase {
     var ctx = canvas.context2D;
     return [
       new CanvasCleaningSystem(canvas),
-      new PixelRenderingSystem(ctx),
+      new SandRenderingSystem(ctx),
+      new WaterRenderingSystem(ctx),
       new FpsRenderingSystem(ctx)
     ];
   }
